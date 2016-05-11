@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      .container {
+        max-width: 500px;
+        padding-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Pollarion</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="/">Home</a></li> -->
+<!--       <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li> 
+      <li><a href="#">Page 3</a></li>  -->
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      {%if session['isadmin'] %}<li><a href="/ban"><span class="glyphicon glyphicon-log-out"></span> Ban </a></li>{% endif %}
+      <li>Hi {{session['username']}}!</li>
+    </ul>
+  </div>
+  </nav>
+    <form action="/addQuestion" method="POST">
+      <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+      <input type="submit" name="basic" value="Submit">
+      {%if session['rand'] %}<input type="submit" name="random" value="Submit Random">{% endif %}
+</form>
+  {% for question in questions %}
+  <a href="/post?id={{question['q_id']}}">
+  <div class="jumbotron">
+    <h1>{{question['q_text']}}</h1> 
+    <!-- <p>{{question['excite']}} likes</p>  -->
+    <p>{{question['q_date']}}</p>
+  </div></a>
+{% endfor %}
+
+
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Python Flask Bucket List App</title>
+ 
+    
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/signup.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <!--<li role="presentation" ><a href="#">Home</a></li>-->                      
+          </ul>
+        </nav>
+        <a class="navbar-brand" href="/login">Back to login</a>
+          
+        <h3 class="text-muted">Create an account</h3>
+      </div>
+ 
+      <div class="jumbotron">
+          <form method="POST" action="/signupclick"> 
+         <input type="hidden" name="a" value="1" />
+         <p>Username: <input type="text" name="User name"></p>
+         <p>Password: <input type="text" name="Password"></p>
+         
+         <p><input type="submit" value="SignUp"></p>
+         
+         </form>
+
+        <form action="/upload_file" method=post enctype=multipart/form-data>
+      <p><input type=file name=file>
+         <input type=submit value= UploadPic>
+    </form>
+              
+         
+      {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+      </div>
+       
+  
+    </div>
+  </body>
+</html>
